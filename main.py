@@ -25,10 +25,7 @@ def display_chat_history(app_instance, config_dict):
     """Displays messages from the LangGraph history for the current fixed session."""
     
     with st.chat_message("assistant"):
-        st.markdown("""
-            **أهلاً بك في مقهى اللؤلؤة!** أنا مساعدك الشخصي هنا. 
-            كيف يمكنني مساعدتك اليوم؟ تفضل بطلبك أو اسأل عن قائمتنا!
-            """)
+        st.markdown("<div dir='rtl'>أهلاً بك في مقهى اللؤلؤة! أنا مساعدك الشخصي هنا. كيف يمكنني مساعدتك اليوم؟ تفضل بطلبك أو اسأل عن قائمتنا!</div>", unsafe_allow_html=True)
     
     history = app_instance.get_state(config_dict)
     
@@ -41,12 +38,12 @@ def display_chat_history(app_instance, config_dict):
     for msg in messages:
         if isinstance(msg, HumanMessage):
             with st.chat_message("user"):
-                st.markdown(msg.content)
+                st.markdown(f"<div dir='rtl'>{msg.content}</div>", unsafe_allow_html=True)
         elif isinstance(msg, AIMessage):
             # Only show AI messages that have content
             if msg.content and msg.content.strip():
                 with st.chat_message("assistant"):
-                    st.markdown(msg.content)
+                    st.markdown(f"<div dir='rtl'>{msg.content}</div>", unsafe_allow_html=True)
 
 # Stream Agent Response Function
 def stream_response(graph_app, initial_state, config_for_run):
@@ -81,7 +78,7 @@ def stream_response(graph_app, initial_state, config_for_run):
                     status_container.update(label=f"تنفيذ أداة: {tool_name}... 🛠️")
                     
             time.sleep(1)
-        status_container.update(label="جاري البحث في قائمة المشروبات... 📋")
+        status_container.update(label="انتهيت... ✅")
         time.sleep(1)
 
 
@@ -95,7 +92,7 @@ if __name__ == "__main__":
     if prompt := st.chat_input("كيف يمكنني مساعدتك؟"):
         # Display the user's message
         with st.chat_message("user"):
-            st.markdown(prompt)
+            st.markdown(f"<div dir='rtl'>{prompt}</div>", unsafe_allow_html=True)
         
         # Stream the assistant's response
         with st.chat_message("assistant"):
