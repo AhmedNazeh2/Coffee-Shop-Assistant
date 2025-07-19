@@ -1,0 +1,16 @@
+venv/
+.env
+__pycache__/
+*.pyc
+.git/
+.gitignore
+.dockerignore
+Dockerfile
+.pytest_cache/
+.mypy_cache/
+*.sqlite
+*.db
+
+# Add these lines for the specific image files
+Coffee Shop Assistant App.png
+Coffee Shop Assistant Graph.PNG
