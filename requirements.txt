@@ -1,0 +1,5 @@
+langchain-google-genai>=2.1.0 
+python-dotenv>=1.0.0 
+langgraph>=0.5.0
+langgraph-checkpoint-sqlite>=2.0.0
+streamlit>=1.0.0
