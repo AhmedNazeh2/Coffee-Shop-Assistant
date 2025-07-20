@@ -40,8 +40,9 @@ def display_chat_history(app_instance, config_dict):
             with st.chat_message("user"):
                 st.markdown(f"<div dir='rtl'>{msg.content}</div>", unsafe_allow_html=True)
         elif isinstance(msg, AIMessage):
-            # Only show AI messages that have content
-            if msg.content and msg.content.strip():
+            # Displays only the final AI messages that do not contain tool calls,
+            # indicating a complete response from the assistant for that turn.
+            if not msg.tool_calls:
                 with st.chat_message("assistant"):
                     st.markdown(f"<div dir='rtl'>{msg.content}</div>", unsafe_allow_html=True)
 
